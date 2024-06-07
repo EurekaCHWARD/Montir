@@ -1,0 +1,289 @@
+{
+    "info": {
+        "_postman_id": "3c7fbff4-fd19-4789-81a1-88b76ba8fd74",
+        "name": "Montir API Request Copy",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "30884670"
+    },
+    "item": [{
+            "name": "Get All Users Data",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:3000/users",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "users"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get User Data by ID",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/users/NLcWVhy4ejVDlYXW",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "users",
+                        "NLcWVhy4ejVDlYXW"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Get User's Datas",
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:3000/user/data",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "user",
+                        "data"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Register Admin",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"username\": \"JohnDoe\",\r\n    \"password\": \"johndoe\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:8000/admins",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "admins"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Registration",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"email\": \"yotsuba@gmail.com\",\r\n    \"username\": \"yotsuba\",\r\n    \"password\": \"yotsuba\",\r\n    \"age\": 12,\r\n    \"gender\": 0,\r\n    \"city\": \"Jepara\",\r\n    \"height\": 130,\r\n    \"weight\": 35\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:8000/users",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "users"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Login Admin",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"username\": \"Eureka\",\r\n    \"password\": \"Eureka\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:8000/login_admin",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "login_admin"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Login Member",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"username\": \"yotsuba\",\r\n    \"password\": \"yotsuba\"\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:8000/login",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "login"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Logout Account",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/logout",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "logout"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Add Daily Data",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"stress_level\": 9,\r\n    \"sleep_duration\": 8\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:3000/users/daily",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "users",
+                        "daily"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Edit User's Data",
+            "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"username\": \"johndoe\",\r\n    \"password\": \"johndoe\",\r\n    \"age\": 22,\r\n    \"gender\": 0,\r\n    \"city\": \"Malang\",\r\n    \"height\": 165,\r\n    \"weight\": 42\r\n}",
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "http://localhost:8000/users/-d75wNyozd4xphAI",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "users",
+                        "-d75wNyozd4xphAI"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "Delete User",
+            "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8000/users/0QG5wB9osg4-oZ2D",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8000",
+                    "path": [
+                        "users",
+                        "0QG5wB9osg4-oZ2D"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
+}
