@@ -10,9 +10,11 @@
 
 ## Add Remote Server to Git
 
-```git remote add origin https://github.com/EurekaCHWARD/Montir.git``` .To change remote server, use ```git remote set-url origin https://github.com/EurekaCHWARD/Montir-App.git```
+```git remote add origin https://github.com/EurekaCHWARD/Montir.git```
 
-To confirm the remote has been added, `run ```git remote -v```
+To change remote server, use ```git remote set-url origin https://github.com/EurekaCHWARD/Montir-App.git```
+
+To confirm the remote has been added, run ```git remote -v```
 
 ## How to Push a New Branch to Remote
 
