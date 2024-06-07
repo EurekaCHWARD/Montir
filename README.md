@@ -2,7 +2,7 @@
 
 ## For Local Repository
 
-```bash git init ``` for initializing a local repository
+```git init``` for initializing a local repository
 
 'git add .' to add all your files that the local repository
 
