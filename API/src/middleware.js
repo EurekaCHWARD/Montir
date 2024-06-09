@@ -2,38 +2,47 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const requireAuthUser = (req, res, next) => {
-    const token = req.cookies.jwt;
+    // Extract token from Authorization header
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+        return res.status(400).json({ message: 'Token tidak terdeteksi, harap login terlebih dahulu!' });
+    }
 
+    const token = authHeader.split(' ')[1]; // Expecting 'Bearer <token>'
     if (!token) {
         return res.status(400).json({ message: 'Token tidak terdeteksi, harap login terlebih dahulu!' });
     }
 
-    // Check JWT exist & is verified
+    // Verify JWT
     jwt.verify(token, process.env.SECRET_STRING, (err, decodedToken) => {
         if (err) {
             return res.status(400).json({ message: 'Anda tidak memiliki hak untuk mengakses request ini!' });
         }
         req.user = decodedToken; // Set the decoded token to req.user
-        return next();
+        next();
     });
 };
 
 const requireAuthAdmin = (req, res, next) => {
-    const token = req.cookies.jwt;
+    // Extract token from Authorization header
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+        return res.status(400).json({ message: 'Token tidak terdeteksi, harap login terlebih dahulu!' });
+    }
 
+    const token = authHeader.split(' ')[1]; // Expecting 'Bearer <token>'
     if (!token) {
         return res.status(400).json({ message: 'Token tidak terdeteksi, harap login terlebih dahulu!' });
     }
 
-    // Check JWT exist & is verified
-    jwt.verify(token, (process.env.SECRET_STRING_ADMIN), (err) => {
+    // Verify JWT
+    jwt.verify(token, process.env.SECRET_STRING_ADMIN, (err, decodedToken) => {
         if (err) {
             return res.status(400).json({ message: 'Request ini hanya bisa diakses oleh admin!' });
         }
-        // console.log(decodedToken);
-        return next();
+        req.user = decodedToken; // Set the decoded token to req.user
+        next();
     });
-    return 0;
 };
 
 module.exports = { requireAuthUser, requireAuthAdmin };

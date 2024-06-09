@@ -69,7 +69,6 @@ exports.signupPost = async(req, res) => {
 
     // Insert user and related data
     await db.promise().query('INSERT INTO users VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [id, email, username, hashedPassword, age, city, gender, height, weight, bmi]);
-    //await db.promise().query('INSERT INTO datas (user_id, age, gender, city, bmi) VALUES (?, ?, ?, ?, ?)', [id, age, gender, city, bmi]);
 
     return res.status(201).json({
         status: 'Sukses',
@@ -124,7 +123,6 @@ exports.getUserData = async(req, res) => {
         return res.status(500).json({ message: 'Internal server error.' });
     }
 };
-
 
 // Function to register a new admin
 exports.signupAdminPost = async(req, res) => {
@@ -280,10 +278,10 @@ exports.login = async(req, res) => {
         const auth = await bcrypt.compare(password, rows[0].password);
         if (auth) {
             const token = createToken(rows[0].id);
-            res.cookie('jwt', token, { httpOnly: false, maxAge: maxExpire * 1000 });
             return res.status(200).json({
                 message: 'Login berhasil!',
                 user_id: rows[0].id,
+                token: token,
             });
         }
         return res.status(404).json({ message: 'Password salah!' });
@@ -315,10 +313,10 @@ exports.loginAdmin = async(req, res) => {
         const auth = await bcrypt.compare(password, rows[0].password);
         if (auth) {
             const token = createTokenAdmin(rows[0].id);
-            res.cookie('jwt', token, { httpOnly: false, maxAge: maxExpire * 1000 });
             return res.status(200).json({
                 message: 'Login sebagai admin!',
                 user_id: rows[0].id,
+                token: token,
             });
         }
         return res.status(404).json({ message: 'Password salah!' });
@@ -328,6 +326,5 @@ exports.loginAdmin = async(req, res) => {
 
 // Function to logout
 exports.logout = (req, res) => {
-    res.cookie('jwt', '', { maxAge: 1 });
     return res.status(200).json({ message: 'Logout sukses!' });
 };
