@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const db = require('./database');
 require('dotenv').config();
+const axios = require("axios");
 
 // Maximum token expiration time (3 days)
 const maxExpire = 3 * 24 * 60 * 60;
@@ -95,14 +96,61 @@ exports.addDailyData = async(req, res) => {
 
     const { age, city, gender, bmi } = rows[0];
 
-    await db.promise().query(
-        'INSERT INTO datas (user_id, age, city, gender, bmi, stress_level, sleep_duration) VALUES (?, ?, ?, ?, ?, ?, ?)', [userId, age, city, gender, bmi, stress_level, sleep_duration]
-    );
+    // Check if age, gender, bmi, stress_level, and sleep_duration are numerical
+    if (
+        isNaN(age) ||
+        isNaN(gender) ||
+        isNaN(bmi) ||
+        isNaN(stress_level) ||
+        isNaN(sleep_duration)
+    ) {
+        return res.status(400).json({ message: "Data harus berupa angka." });
+    }
 
-    return res.status(201).json({
-        message: 'Data harian berhasil ditambahkan.',
-        data: { userId, age, city, gender, bmi, stress_level, sleep_duration }
-    });
+    // Prepare data for the model prediction
+    const predictionData = {
+        age: parseInt(age),
+        gender: parseInt(gender),
+        bmi: parseFloat(bmi),
+        stress_level: parseFloat(stress_level),
+        sleep_duration: parseFloat(sleep_duration),
+    };
+
+    try {
+        // Call the Flask endpoint to get the quality score
+        const response = await axios.post(
+            "https://montir-app-69420.as.r.appspot.com/predict",
+            predictionData
+        );
+        const quality_score = response.data.quality_score;
+
+        // Update the datas table with the quality score
+        await db
+            .promise()
+            .query(
+                "INSERT INTO datas (user_id, age, city, gender, bmi, stress_level, sleep_duration, quality_score) VALUES (?, ?, ?, ?, ?, ?, ?, ?)", [userId, age, city, gender, bmi, stress_level, sleep_duration, quality_score]
+            );
+
+        return res.status(201).json({
+            message: "Data harian berhasil ditambahkan.",
+            data: {
+                userId,
+                age,
+                city,
+                gender,
+                bmi,
+                stress_level,
+                sleep_duration,
+                quality_score,
+            },
+        });
+    } catch (error) {
+        console.error(
+            "Error fetching quality score:",
+            error.response ? error.response.data : error.message
+        );
+        return res.status(500).json({ message: "Internal server error." });
+    }
 };
 
 // Function to get user's datas
