@@ -4,6 +4,7 @@ const {
     getAllUser,
     signupPost,
     addDailyData,
+    getDailyData,
     signupAdminPost,
     getUserById,
     editUserById,
@@ -26,6 +27,9 @@ routes.get('/user/data', requireAuthUser, getUserData);
 
 // Route to add daily data
 routes.post('/users/daily', requireAuthUser, addDailyData);
+
+// Route to get daily data
+routes.get('/dailydata', requireAuthUser, getDailyData);
 
 // Admin signup route
 routes.post('/admins', signupAdminPost);
