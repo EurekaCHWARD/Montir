@@ -1,0 +1,2879 @@
+{
+	"info": {
+		"_postman_id": "29c0f7dd-f901-442d-ab8e-6bb06788189d",
+		"name": "Montir API",
+		"description": "# Montir API\n\nThe Montir API provides endpoints for managing user accounts, collecting and analyzing sleep data, and administering the application. This API is designed to support a sleep monitoring application where users can register, log their sleep data, and view their sleep patterns over time.\n\n[https://documenter.getpostman.com/view/30884670/2sA3Qv9X1A](https://documenter.getpostman.com/view/30884670/2sA3Qv9X1A)\n\n## Authentication\n\nThe API uses JSON Web Tokens (JWT) for authentication. Users and administrators must obtain a valid JWT by logging in with their credentials before accessing protected endpoints.\n\n## Endpoints\n\n### User Management\n\n- **Register User**: Allows users to create a new account by providing their username, password, age, gender, city, height, and weight.\n    \n- **Login**: Authenticates users and generates a JWT token for subsequent requests.\n    \n- **Get User Data**: Retrieves the user's profile information based on their user ID.\n    \n- **Edit User Profile**: Allows users to update their profile information, including username, password, age, city, gender, height, and weight.\n    \n\n### Admin Management\n\n- **Register Admin**: Allows administrators to create a new admin account by providing theirusername, and password.\n    \n- **Login Admin**: Authenticates administrators and generates a JWT token for subsequent requests.\n    \n- **Delete User Account**: Allows administrators to delete a user's account by providing the user's ID.\n    \n\n### Sleep Data Management\n\n- **Add Daily Data**: Allows users to log their daily sleep data, including stress level and sleep duration.\n    \n- **Get Daily Data**: Retrieves a user's sleep data, including stress level, sleep duration, and quality score, for analysis and visualization.\n    \n\n## Error Handling\n\nThe API returns appropriate HTTP status codes and error messages for invalid requests, unauthorized access, and other error scenarios. Users and administrators should check the response status and error messages for troubleshooting.\n\n## Security\n\nThe API implements various security measures, including encryption of sensitive data, JWT token authentication, and input validation, to protect user privacy and prevent unauthorized access.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30884670"
+	},
+	"item": [
+		{
+			"name": "Get All Users (Admin Only)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlF5Zlp2MEFTU2tDMTBwOWEiLCJpYXQiOjE3MTg1MjAyOTcsImV4cCI6MTcxODc3OTQ5N30.eemgr5A-TN8Mb1FPp5rly1L6XuEaupZf_7MhE_keKHE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://montir-cvzxsttw2a-et.a.run.app/users",
+					"protocol": "https",
+					"host": [
+						"montir-cvzxsttw2a-et",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "Fetches all users. Requires admin privileges."
+			},
+			"response": [
+				{
+					"name": "(200) Successful",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"420-MmonV3tem6E76kBVlMF2yjM7s4s\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "5525cefd1be196bf41139a43229f1700;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Jun 2024 06:46:38 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1056"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": \"2xGyvIXoFxFj8XCI\",\n        \"username\": \"test12345\",\n        \"password\": \"$2b$10$h6eU9fZQvf.gjSbrR6yq8O/x87GrJzYZuf50L12bCzmxcWgEw2KCy\",\n        \"age\": 23,\n        \"city\": \"Jakarta\",\n        \"gender\": 1,\n        \"height\": 188,\n        \"weight\": 100,\n        \"bmi\": 28.29,\n        \"bmi_underweight\": 0,\n        \"bmi_normal\": 0,\n        \"bmi_overweight\": 1,\n        \"bmi_obese\": 0\n    },\n    {\n        \"id\": \"LCxfWbXtSOIgF1PN\",\n        \"username\": \"test1234\",\n        \"password\": \"$2b$10$p0TJwmH9dkB31hTfx5lHsOOMkSbEuekKAuUVxhiWSuj5eNIWoVwcW\",\n        \"age\": 23,\n        \"city\": \"Malang\",\n        \"gender\": 1,\n        \"height\": 188,\n        \"weight\": 75,\n        \"bmi\": 21.22,\n        \"bmi_underweight\": 0,\n        \"bmi_normal\": 1,\n        \"bmi_overweight\": 0,\n        \"bmi_obese\": 0\n    },\n    {\n        \"id\": \"wdaP29EORplV73Ie\",\n        \"username\": \"test123\",\n        \"password\": \"$2b$10$GHXUKn/fCNOIVlifRsNXsetUMfixcrMRgkjIdcz6pnc2oqSmyzlyy\",\n        \"age\": 23,\n        \"city\": \"Malang\",\n        \"gender\": 1,\n        \"height\": 188,\n        \"weight\": 42,\n        \"bmi\": 11.88,\n        \"bmi_underweight\": 1,\n        \"bmi_normal\": 0,\n        \"bmi_overweight\": 0,\n        \"bmi_obese\": 0\n    },\n    {\n        \"id\": \"_KXVYVQB_t982whT\",\n        \"username\": \"test123456\",\n        \"password\": \"$2b$10$XUtCDVyIlYAR8VoETf1gO.zv3cqGf5laOqIl84KO0AHrMAYp9EJua\",\n        \"age\": 23,\n        \"city\": \"Pati\",\n        \"gender\": 1,\n        \"height\": 188,\n        \"weight\": 188,\n        \"bmi\": 53.19,\n        \"bmi_underweight\": 0,\n        \"bmi_normal\": 0,\n        \"bmi_overweight\": 0,\n        \"bmi_obese\": 1\n    }\n]"
+				},
+				{
+					"name": "(400) Token not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"42-1GoRqzooQMpH5Npqo/DLz9NAYAM\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "0423ba1d649087adf6fdd8ebdee85d67"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 06:37:36 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "66"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Token tidak terdeteksi, harap login terlebih dahulu!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get User Data by ID (User Only)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJ4R3l2SVhvRnhGajhYQ0kiLCJpYXQiOjE3MTg0MzAzODEsImV4cCI6MTcxODY4OTU4MX0.x9NUrDM7CDZIhXEKBD4s1TKVFBdihcAmJszT1J12Kbg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/{{id}}",
+					"protocol": "https",
+					"host": [
+						"montir-cvzxsttw2a-et",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"users",
+						"{{id}}"
+					]
+				},
+				"description": "Fetches a user's details by their ID."
+			},
+			"response": [
+				{
+					"name": "(200) Successful",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"126-8JXJQkI5gpyGaFsIQYxb+U5YwoU\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "dfb87f67f7e4cb16c15c23a8e8e25d8d;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Jun 2024 06:47:20 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "294"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"data found\",\n    \"data\": {\n        \"id\": \"LCxfWbXtSOIgF1PN\",\n        \"username\": \"test1234\",\n        \"password\": \"$2b$10$p0TJwmH9dkB31hTfx5lHsOOMkSbEuekKAuUVxhiWSuj5eNIWoVwcW\",\n        \"age\": 23,\n        \"city\": \"Malang\",\n        \"gender\": 1,\n        \"height\": 188,\n        \"weight\": 75,\n        \"bmi\": 21.22,\n        \"bmi_underweight\": 0,\n        \"bmi_normal\": 1,\n        \"bmi_overweight\": 0,\n        \"bmi_obese\": 0\n    }\n}"
+				},
+				{
+					"name": "(400) Token not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/{{id}}",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users",
+								"{{id}}"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"42-1GoRqzooQMpH5Npqo/DLz9NAYAM\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "3130b08058a9a937d80c9626f0de658e;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 06:40:46 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "66"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Token tidak terdeteksi, harap login terlebih dahulu!\"\n}"
+				},
+				{
+					"name": "(403) User's ID not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/{{id}}",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users",
+								"{{id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"3c-fXtmZsOInRj5h2egmk+t06fPLdI\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "27878056eda3fbf69c99b7be2326e2fd;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 06:47:45 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "60"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User dengan id tersebut tidak dapat ditemukan!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get User's Datas (Logged in users only)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJ4R3l2SVhvRnhGajhYQ0kiLCJpYXQiOjE3MTg1MjA1NzMsImV4cCI6MTcxODc3OTc3M30.AI_e3Xy2mVkrq_lESTxFX1Fua94bcQmuXCFYiKTr5JQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://montir-cvzxsttw2a-et.a.run.app/user/data",
+					"protocol": "https",
+					"host": [
+						"montir-cvzxsttw2a-et",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"user",
+						"data"
+					]
+				},
+				"description": "Fetches logged in user's data."
+			},
+			"response": [
+				{
+					"name": "(200) Successful",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/user/data",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"user",
+								"data"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"685-F6fadPHeKRSmSZx32q9Eb8QLPtk\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "317be949308c846f0463f0f5d7542655;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Jun 2024 06:49:43 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1669"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User data retrieved successfully.\",\n    \"data\": [\n        {\n            \"id\": 52,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 5,\n            \"sleep_duration\": 8,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 8.25\n        },\n        {\n            \"id\": 53,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 1,\n            \"sleep_duration\": 3,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 8.5\n        },\n        {\n            \"id\": 54,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 6,\n            \"sleep_duration\": 3,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 3.09\n        },\n        {\n            \"id\": 55,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 8,\n            \"sleep_duration\": 7,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 4.7\n        },\n        {\n            \"id\": 56,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 4,\n            \"sleep_duration\": 8,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 8.59\n        },\n        {\n            \"id\": 57,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 0,\n            \"sleep_duration\": 11,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 13.41\n        },\n        {\n            \"id\": 58,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 2,\n            \"sleep_duration\": 11,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 13.11\n        },\n        {\n            \"id\": 59,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 5,\n            \"sleep_duration\": 5,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 5.32\n        },\n        {\n            \"id\": 60,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 3,\n            \"sleep_duration\": 7,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 8.38\n        }\n    ]\n}"
+				},
+				{
+					"name": "(400) Token not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/user/data",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"user",
+								"data"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"42-1GoRqzooQMpH5Npqo/DLz9NAYAM\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "1962dd65bc6b0855b9c9579021b2b8d1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 06:48:53 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "66"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Token tidak terdeteksi, harap login terlebih dahulu!\"\n}"
+				},
+				{
+					"name": "(404) User data not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/user/data",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"user",
+								"data"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"22-H11X6OXatV76p3raRzruXc7OPvA\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "f82065cb155e58d41182511308c8e5db;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Jun 2024 06:48:50 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "34"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User data not found.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Daily Data",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJ4R3l2SVhvRnhGajhYQ0kiLCJpYXQiOjE3MTg1MjA1NzMsImV4cCI6MTcxODc3OTc3M30.AI_e3Xy2mVkrq_lESTxFX1Fua94bcQmuXCFYiKTr5JQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://montir-cvzxsttw2a-et.a.run.app/dailydata?startDate=2024-06-13&endDate=2024-06-16",
+					"protocol": "https",
+					"host": [
+						"montir-cvzxsttw2a-et",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"dailydata"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2024-06-13"
+						},
+						{
+							"key": "endDate",
+							"value": "2024-06-16"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "(200) Successful",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/dailydata?startDate=2024-06-13&endDate=2024-06-16",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"dailydata"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-06-13"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-06-16"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"9ef-WpaO3dvG9T7f834YRDcf0AoLmfI\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "5ca97515c8e7086c61f3d4e855e455f2;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Jun 2024 06:50:56 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "2543"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Data retrieved successfully.\",\n    \"data\": [\n        {\n            \"id\": 47,\n            \"user_id\": \"_KXVYVQB_t982whT\",\n            \"age\": 23,\n            \"city\": \"Pati\",\n            \"gender\": 1,\n            \"bmi\": 53.19,\n            \"stress_level\": 6,\n            \"sleep_duration\": 8,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 8.41\n        },\n        {\n            \"id\": 48,\n            \"user_id\": \"_KXVYVQB_t982whT\",\n            \"age\": 23,\n            \"city\": \"Pati\",\n            \"gender\": 1,\n            \"bmi\": 53.19,\n            \"stress_level\": 2,\n            \"sleep_duration\": 6,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 7.5\n        },\n        {\n            \"id\": 49,\n            \"user_id\": \"_KXVYVQB_t982whT\",\n            \"age\": 23,\n            \"city\": \"Pati\",\n            \"gender\": 1,\n            \"bmi\": 53.19,\n            \"stress_level\": 8,\n            \"sleep_duration\": 4,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 1.03\n        },\n        {\n            \"id\": 50,\n            \"user_id\": \"_KXVYVQB_t982whT\",\n            \"age\": 23,\n            \"city\": \"Pati\",\n            \"gender\": 1,\n            \"bmi\": 53.19,\n            \"stress_level\": 0,\n            \"sleep_duration\": 7,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 9.25\n        },\n        {\n            \"id\": 51,\n            \"user_id\": \"_KXVYVQB_t982whT\",\n            \"age\": 23,\n            \"city\": \"Pati\",\n            \"gender\": 1,\n            \"bmi\": 53.19,\n            \"stress_level\": 5,\n            \"sleep_duration\": 8,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 8.61\n        },\n        {\n            \"id\": 52,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 5,\n            \"sleep_duration\": 8,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 8.25\n        },\n        {\n            \"id\": 53,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 1,\n            \"sleep_duration\": 3,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 8.5\n        },\n        {\n            \"id\": 54,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 6,\n            \"sleep_duration\": 3,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 3.09\n        },\n        {\n            \"id\": 55,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 8,\n            \"sleep_duration\": 7,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 4.7\n        },\n        {\n            \"id\": 56,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 4,\n            \"sleep_duration\": 8,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 8.59\n        },\n        {\n            \"id\": 57,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 0,\n            \"sleep_duration\": 11,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 13.41\n        },\n        {\n            \"id\": 58,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 2,\n            \"sleep_duration\": 11,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 13.11\n        },\n        {\n            \"id\": 59,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 5,\n            \"sleep_duration\": 5,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 5.32\n        },\n        {\n            \"id\": 60,\n            \"user_id\": \"2xGyvIXoFxFj8XCI\",\n            \"age\": 23,\n            \"city\": \"Jakarta\",\n            \"gender\": 1,\n            \"bmi\": 28.29,\n            \"stress_level\": 3,\n            \"sleep_duration\": 7,\n            \"date\": \"2024-06-15T00:00:00.000Z\",\n            \"quality_score\": 8.38\n        }\n    ]\n}"
+				},
+				{
+					"name": "(400) Token not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/dailydata?startDate=2024-06-13&endDate=2024-06-16",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"dailydata"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-06-13"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-06-16"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"42-1GoRqzooQMpH5Npqo/DLz9NAYAM\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "51ca2aaf09b586660cb23f893d5e5b5f;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Jun 2024 06:51:24 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "66"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Token tidak terdeteksi, harap login terlebih dahulu!\"\n}"
+				},
+				{
+					"name": "(404) Data not found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/dailydata?startDate=2024-06-13&endDate=2024-06-13",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"dailydata"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2024-06-13"
+								},
+								{
+									"key": "endDate",
+									"value": "2024-06-13"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"39-n9VJgVZWzLNGKXuN0Es7W6Kr9J8\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "cea828840a1c4d3505780f3fcbd9948e"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Jun 2024 06:52:30 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"No data found for the specified date range.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Register Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"yotsba\",\r\n    \"password\": \"yotsba\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://montir-cvzxsttw2a-et.a.run.app/admins",
+					"protocol": "https",
+					"host": [
+						"montir-cvzxsttw2a-et",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"admins"
+					]
+				},
+				"description": "Registers a new admin."
+			},
+			"response": [
+				{
+					"name": "(201) Successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"yotsba@gmail.com\",\r\n    \"username\": \"yotsba\",\r\n    \"password\": \"yotsba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/admins",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"66-Sk0Qddk+Y3P8qA+Nu0deNOpmu5A\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "4235633217e45339b62b582e83143905;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 06:15:44 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "102"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Sukses\",\n    \"message\": \"Admin baru berhasil ditambahkan.\",\n    \"data\": {\n        \"adminId\": \"cnFZj4QU6pGSZ-NF\"\n    }\n}"
+				},
+				{
+					"name": "(500) Username already used",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"yotsba123@gmail.com\",\r\n    \"username\": \"yotsba\",\r\n    \"password\": \"yotsba\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/admins",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"30-NEuD1/CjQWNvS0hHByum8UGVxpc\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "2eaa3ed978698f2c4e696cc326dacaaa;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 06:50:08 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Username tersebut sudah digunakan!\"\n}"
+				},
+				{
+					"name": "(400) All field must be filled",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"username\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/admins",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"51-R6Vm5blj6r8xA4BOgGk170CZi5U\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "43dca00960b33c6910f74c93b0355738;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 06:52:19 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "81"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Gagal\",\n    \"message\": \"Gagal menambah admin baru, semua field diperlukan!\"\n}"
+				},
+				{
+					"name": "(400) Must contain 6 or more characters",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"yotsba123@gmail.com\",\r\n    \"username\": \"yot\",\r\n    \"password\": \"yot\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/admins",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"5e-NTflYsDlh/mwj8yJX9lQKvNI0KY\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "e834923d4c2abccaedcda53761a408ea"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 06:53:06 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "94"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Gagal\",\n    \"message\": \"Panjang username dan/atau password harus 6 karakter atau lebih!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"johndoe\",\r\n    \"password\": \"johndoe\",\r\n    \"age\": 23,\r\n    \"city\": \"Malang\",\r\n    \"gender\": 1,\r\n    \"height\": 188,\r\n    \"weight\": 100\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://montir-cvzxsttw2a-et.a.run.app/users",
+					"protocol": "https",
+					"host": [
+						"montir-cvzxsttw2a-et",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "Registers a new user."
+			},
+			"response": [
+				{
+					"name": "(201) Successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"username\": \"johndoe\",\r\n    \"password\": \"johndoe\",\r\n    \"age\": 26,\r\n    \"city\": \"Malang\",\r\n    \"gender\": 1,\r\n    \"height\": 189,\r\n    \"weight\": 87\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"64-rCt5YD6wtAyI/au+7kWLVH8dJKQ\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "311c3dd0510744f9425458f12f5b005d;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 06:09:27 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "100"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Sukses\",\n    \"message\": \"User baru berhasil ditambahkan.\",\n    \"data\": {\n        \"userId\": \"ab8pcMae3s3cnRQg\"\n    }\n}"
+				},
+				{
+					"name": "(500) Username already used",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe123@gmail.com\",\r\n    \"username\": \"johndoe\",\r\n    \"password\": \"johndoe\",\r\n    \"age\": 26,\r\n    \"city\": \"Malang\",\r\n    \"gender\": 1,\r\n    \"height\": 189,\r\n    \"weight\": 87\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Internal Server Error",
+					"code": 500,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"30-NEuD1/CjQWNvS0hHByum8UGVxpc\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "b3719db840dc678eccdd5b22cfa9d698;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 06:56:10 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "48"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Username tersebut sudah digunakan!\"\n}"
+				},
+				{
+					"name": "(400) All field must be filled",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"username\": \"\",\r\n    \"password\": \"\",\r\n    \"age\": 26,\r\n    \"city\": \"\",\r\n    \"gender\": 1,\r\n    \"height\": 189,\r\n    \"weight\": 87\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"50-7N8wjgLNZWdWN1tpA1ycspPxZTI\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "48abd501fb3c47d5564239d8d48b2126;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 06:57:40 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "80"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Gagal\",\n    \"message\": \"Gagal menambah user baru, semua field diperlukan!\"\n}"
+				},
+				{
+					"name": "(400) Must contain 6 or more characters",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe123@gmail.com\",\r\n    \"username\": \"john\",\r\n    \"password\": \"john\",\r\n    \"age\": 26,\r\n    \"city\": \"Malang\",\r\n    \"gender\": 1,\r\n    \"height\": 189,\r\n    \"weight\": 87\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"5e-NTflYsDlh/mwj8yJX9lQKvNI0KY\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "038711aaab4e698d6efe667b41fbdc9f;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 06:58:32 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "94"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Gagal\",\n    \"message\": \"Panjang username dan/atau password harus 6 karakter atau lebih!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"Eureka\",\r\n    \"password\": \"Eureka\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://montir-cvzxsttw2a-et.a.run.app/login_admin",
+					"protocol": "https",
+					"host": [
+						"montir-cvzxsttw2a-et",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"login_admin"
+					]
+				},
+				"description": "Authenticates an admin and returns a JWT token."
+			},
+			"response": [
+				{
+					"name": "(200) Successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Eureka\",\r\n    \"password\": \"Eureka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/login_admin",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"login_admin"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"ea-7iVIYZOl2rZhrSyVXDtPruZQyfQ\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "7f56f97eecb588cc3c42e04b979d2a30;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Jun 2024 06:44:57 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "234"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Login sebagai admin!\",\n    \"user_id\": \"QyfZv0ASSkC10p9a\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlF5Zlp2MEFTU2tDMTBwOWEiLCJpYXQiOjE3MTg1MjAyOTcsImV4cCI6MTcxODc3OTQ5N30.eemgr5A-TN8Mb1FPp5rly1L6XuEaupZf_7MhE_keKHE\"\n}"
+				},
+				{
+					"name": "(400) Must contain 6 or more characters",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Eure\",\r\n    \"password\": \"Eure\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/login_admin",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"login_admin"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"5e-NTflYsDlh/mwj8yJX9lQKvNI0KY\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "5596c4450a471b455ff4d27545753d80"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 06:59:36 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "94"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Gagal\",\n    \"message\": \"Panjang username dan/atau password harus 6 karakter atau lebih!\"\n}"
+				},
+				{
+					"name": "(404) Username not found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Eureka123\",\r\n    \"password\": \"Eureka\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/login_admin",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"login_admin"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"27-rhd0mRcH8/w+HVqQ0CRf/InRN/8\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "bec745968240661c8441933d573cfe6f;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 07:00:06 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Username tidak ditemukan!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Login Member",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"test12345\",\r\n    \"password\": \"test12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://montir-cvzxsttw2a-et.a.run.app/login",
+					"protocol": "https",
+					"host": [
+						"montir-cvzxsttw2a-et",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"login"
+					]
+				},
+				"description": "Authenticates a user and returns a JWT token."
+			},
+			"response": [
+				{
+					"name": "(200) Successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"test12345\",\r\n    \"password\": \"test12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/login",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"e5-M084PhxtVwknyT1TVwQGwnQFloM\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "92782afa9b27c8b5d352018ab2c18b4c;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Jun 2024 06:49:33 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "229"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Login berhasil!\",\n    \"user_id\": \"2xGyvIXoFxFj8XCI\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJ4R3l2SVhvRnhGajhYQ0kiLCJpYXQiOjE3MTg1MjA1NzMsImV4cCI6MTcxODc3OTc3M30.AI_e3Xy2mVkrq_lESTxFX1Fua94bcQmuXCFYiKTr5JQ\"\n}"
+				},
+				{
+					"name": "(400) Must contain 6 or more characters",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"john\",\r\n    \"password\": \"john\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/login",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"5e-NTflYsDlh/mwj8yJX9lQKvNI0KY\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "9741adf6a3347871b1334cb5948e111d;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 07:00:49 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "94"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Gagal\",\n    \"message\": \"Panjang username dan/atau password harus 6 karakter atau lebih!\"\n}"
+				},
+				{
+					"name": "(404) Username not found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"johndoe123\",\r\n    \"password\": \"johndoe\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/login",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"27-rhd0mRcH8/w+HVqQ0CRf/InRN/8\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "c9dea7369a16b50d36f981961a67646d;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 07:01:10 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "39"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Username tidak ditemukan!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Logout Account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://montir-cvzxsttw2a-et.a.run.app/logout",
+					"protocol": "https",
+					"host": [
+						"montir-cvzxsttw2a-et",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"logout"
+					]
+				},
+				"description": "Logs out a user/admin."
+			},
+			"response": [
+				{
+					"name": "(200) Successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/logout",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "set-cookie",
+							"value": "jwt=; Max-Age=0; Path=/; Expires=Mon, 03 Jun 2024 07:02:12 GMT"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"1c-abDQYOuUPs2nSfLeIvzkhpox+i0\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "f964001d5032eacd5d13cf1c7b3acb40"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 07:02:12 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "28"
+						},
+						{
+							"key": "Expires",
+							"value": "Mon, 03 Jun 2024 07:02:12 GMT"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "private"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Logout sukses!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Add Daily Data (User Only)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJ4R3l2SVhvRnhGajhYQ0kiLCJpYXQiOjE3MTg0MzA2MDIsImV4cCI6MTcxODY4OTgwMn0.ZbBRoMo6CwG1Hbdvvgj-zLNaMp60dJXzED7eBwp0Shk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"stress_level\": 3,\r\n    \"sleep_duration\": 7\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/daily",
+					"protocol": "https",
+					"host": [
+						"montir-cvzxsttw2a-et",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"users",
+						"daily"
+					]
+				},
+				"description": "Adds daily data for a logged-in user."
+			},
+			"response": [
+				{
+					"name": "(200) Successful",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"stress_level\": 3,\r\n    \"sleep_duration\": 7\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/daily",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users",
+								"daily"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"be-LSl7VB/kbx51zxHWKlUmB5/lfVQ\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "3cff5a773dfa33bcd3389597fee6dc83;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Jun 2024 06:57:17 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "190"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Data harian berhasil ditambahkan.\",\n    \"data\": {\n        \"userId\": \"2xGyvIXoFxFj8XCI\",\n        \"age\": 23,\n        \"city\": \"Jakarta\",\n        \"gender\": 1,\n        \"bmi\": 28.29,\n        \"stress_level\": 3,\n        \"sleep_duration\": 7,\n        \"quality_score\": 8.38\n    }\n}"
+				},
+				{
+					"name": "(400) Token not found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"stress_level\": 3,\r\n    \"sleep_duration\": 9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/daily",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users",
+								"daily"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"42-1GoRqzooQMpH5Npqo/DLz9NAYAM\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "aa86947621eeef5f91997fc0fc0ea903;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 07:02:52 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "66"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Token tidak terdeteksi, harap login terlebih dahulu!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Edit User's Data (User Only)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJ4R3l2SVhvRnhGajhYQ0kiLCJpYXQiOjE3MTg0MzAzODEsImV4cCI6MTcxODY4OTU4MX0.x9NUrDM7CDZIhXEKBD4s1TKVFBdihcAmJszT1J12Kbg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"test123456\",\r\n    \"password\": \"test123456\",\r\n    \"age\": 23,\r\n    \"city\": \"Pati\",\r\n    \"gender\": 1,\r\n    \"height\": 188,\r\n    \"weight\": 188\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/_KXVYVQB_t982whT",
+					"protocol": "https",
+					"host": [
+						"montir-cvzxsttw2a-et",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"users",
+						"_KXVYVQB_t982whT"
+					]
+				},
+				"description": "Updates a user's details."
+			},
+			"response": [
+				{
+					"name": "(200) Successful",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"username\": \"johndoe\",\r\n    \"password\": \"johndoe\",\r\n    \"age\": 19,\r\n    \"city\": \"Jakarta\",\r\n    \"gender\": 1,\r\n    \"height\": 179,\r\n    \"weight\": 72\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"39-iSH4//ruS7xWk3TNJPsUpDM1TGU\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "c6bd03dff4d7b80fd46f1c8071adf47c;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 05:55:31 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "57"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Update data sukses!\",\n    \"id\": \"_laW7zlAw8f8PcQC\"\n}"
+				},
+				{
+					"name": "(400) Must contain 6 or more characters",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"username\": \"john\",\r\n    \"password\": \"john\",\r\n    \"age\": 19,\r\n    \"city\": \"Jakarta\",\r\n    \"gender\": 1,\r\n    \"height\": 179,\r\n    \"weight\": 72\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/{{id}}",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users",
+								"{{id}}"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"5e-NTflYsDlh/mwj8yJX9lQKvNI0KY\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "fdf9a655fa2834f205d4407ab841e2ba;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 07:06:27 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "94"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Gagal\",\n    \"message\": \"Panjang username dan/atau password harus 6 karakter atau lebih!\"\n}"
+				},
+				{
+					"name": "(400) Fields must be filled",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"johndoe@gmail.com\",\r\n    \"username\": \"\",\r\n    \"password\": \"\",\r\n    \"age\": 19,\r\n    \"city\": \"Jakarta\",\r\n    \"gender\": 1,\r\n    \"height\": 179,\r\n    \"weight\": 72\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/{{id}}",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users",
+								"{{id}}"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"64-0vrNKjT+4XMx8mWDtSCPc3yYlug\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "60ef3b6be8d496b81fd4c3b2461e6c5a;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 07:07:11 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "100"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"Gagal\",\n    \"message\": \"Gagal mengedit informasi user, username dan/atau password diperlukan!\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete User (Admin Only)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IlF5Zlp2MEFTU2tDMTBwOWEiLCJpYXQiOjE3MTg0MzAxNzQsImV4cCI6MTcxODY4OTM3NH0.D_BfASEzRk-dLBW2MNbMc_3tR352B3SwLW4Wu3K5-es",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/{{id}}",
+					"protocol": "https",
+					"host": [
+						"montir-cvzxsttw2a-et",
+						"a",
+						"run",
+						"app"
+					],
+					"path": [
+						"users",
+						"{{id}}"
+					]
+				},
+				"description": "Deletes a user by their ID. Requires admin privileges."
+			},
+			"response": [
+				{
+					"name": "(200) Successful",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users",
+								""
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"159-bQ1AbUyYtCk3YDAS902eBFZ8jWc\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "c7f92cc069e575424ea3ec7cd438b654;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 16 Jun 2024 06:58:51 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "345"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User dengan data di bawah ini sukses dihapus dari database!\",\n    \"data\": [\n        {\n            \"id\": \"GdDEq9mBjxlebCTN\",\n            \"username\": \"johndoe\",\n            \"password\": \"$2b$10$ErsMYuSHuwsXRUfu40321ObeOWiEnPK92d14ZhSq.C0iwU.SEc6q6\",\n            \"age\": 23,\n            \"city\": \"Malang\",\n            \"gender\": 1,\n            \"height\": 188,\n            \"weight\": 100,\n            \"bmi\": 28.29,\n            \"bmi_underweight\": 0,\n            \"bmi_normal\": 0,\n            \"bmi_overweight\": 1,\n            \"bmi_obese\": 0\n        }\n    ]\n}"
+				},
+				{
+					"name": "(400) Token not found",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/{{id}}",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users",
+								"{{id}}"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"38-6gA9R3AD/M70x5Wxe8e4AfDc9UY\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "5c5e29dc7b87ef03301ad3153dc213ee;o=1"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 07:08:52 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "56"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Request ini hanya bisa diakses oleh admin!\"\n}"
+				},
+				{
+					"name": "(404) User ID not found",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://montir-cvzxsttw2a-et.a.run.app/users/{{id}}",
+							"protocol": "https",
+							"host": [
+								"montir-cvzxsttw2a-et",
+								"a",
+								"run",
+								"app"
+							],
+							"path": [
+								"users",
+								"{{id}}"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "x-powered-by",
+							"value": "Express"
+						},
+						{
+							"key": "access-control-allow-origin",
+							"value": "*"
+						},
+						{
+							"key": "content-type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "etag",
+							"value": "W/\"36-tUo7EboHG8+SoqvkbcbNLCr3J9M\""
+						},
+						{
+							"key": "X-Cloud-Trace-Context",
+							"value": "7b95db6b522d3ca528d46a94b739a641"
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 03 Jun 2024 07:09:26 GMT"
+						},
+						{
+							"key": "Server",
+							"value": "Google Frontend"
+						},
+						{
+							"key": "Content-Length",
+							"value": "54"
+						},
+						{
+							"key": "Alt-Svc",
+							"value": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"User dengan id tersebut tidak ditemukan.\"\n}"
+				}
+			]
+		}
+	]
+}
