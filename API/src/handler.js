@@ -139,7 +139,7 @@ exports.addDailyData = async(req, res) => {
     try {
         // Call the Flask endpoint to get the quality score
         const response = await axios.post(
-            "http://127.0.0.1:5000/predict",
+            "https://montir-app-69420.as.r.appspot.com/predict",
             predictionData
         );
         const quality_score = response.data.quality_score;
@@ -318,7 +318,10 @@ exports.editUserById = async(req, res) => {
         'UPDATE datas SET age = ?, gender = ?, city = ?, bmi = ?  WHERE user_id = ?', [age, gender, city, bmiData.bmi, userId]
     );
 
-    return res.status(200).json({ message: 'Update data sukses!', id: userId });
+    const [updatedUser] = await db.promise().query('SELECT username, age, city, gender, height, weight, bmi FROM users WHERE id = ?', [userId]);
+
+
+    return res.status(200).json({ message: 'Update data sukses!', data: updatedUser });
 };
 
 // Function to delete a user by ID
@@ -356,6 +359,8 @@ exports.login = async(req, res) => {
 
     // Check if user exists and password is correct
     const [rows] = await db.promise().query('SELECT * FROM users WHERE username = ?', [username]);
+
+    const [userData] = await db.promise().query('SELECT username, age, city, gender, height, weight, bmi FROM users WHERE username = ?', [username]);
     if (rows.length !== 0) {
         const auth = await bcrypt.compare(password, rows[0].password);
         if (auth) {
@@ -363,7 +368,9 @@ exports.login = async(req, res) => {
             return res.status(200).json({
                 message: 'Login berhasil!',
                 user_id: rows[0].id,
+                data: userData,
                 token: token,
+
             });
         }
         return res.status(404).json({ message: 'Password salah!' });
