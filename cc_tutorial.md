@@ -93,7 +93,7 @@ export REGION=asia-southeast2
 9. Create Serverless VPC Access connector.
 
     ```bash
-    gcloud compute networks vpc-access connectors create anticede-connector \
+    gcloud compute networks vpc-access connectors create montir-connector \
         --region=${REGION} \
         --range=10.8.0.0/28 \
         --min-instances=2 \
