@@ -23,47 +23,47 @@ export REGION=asia-southeast2
     ```bash
     gcloud compute addresses create montir-ip \
         --global \
-        --purpose VPC_PEERING \
-        --prefix-length 20 \
-        --network projects/$PROJECT_ID/global/networks/default
+        --purpose=VPC_PEERING \
+        --prefix-length=20 \
+        --network=projects/$PROJECT_ID/global/networks/default
     ```
 
 2. Create private connection.
 
     ```bash
     gcloud services vpc-peerings connect \
-        --service servicenetworking.googleapis.com \
-        --ranges montir-ip \
-        --network default \
-        --project $PROJECT_ID
+        --service=servicenetworking.googleapis.com \
+        --ranges=montir-ip \
+        --network=default \
+        --project=$PROJECT_ID
     ```
 
 3. Create MySQL instance.
 
    ```bash
    gcloud sql instances create montir-sql \
-        --project $PROJECT_ID \
-        --network projects/$PROJECT_ID/global/networks/default \
+        --project=$PROJECT_ID \
+        --network=projects/$PROJECT_ID/global/networks/default \
         --no-assign-ip \
-        --database-version MYSQL_8_0 \
-        --cpu 2 \
-        --memory 4GB \
-        --region $REGION \
-        --root-password montir123
+        --database-version=MYSQL_8_0 \
+        --cpu=2 \
+        --memory=4GB \
+        --region=$REGION \
+        --root-password=montir123
     ```
 
 4. Create database.
 
     ```bash
-    gcloud sql databases create montir-db --instance montir-sql
+    gcloud sql databases create montir-db --instance=montir-sql
     ```
 
 5. Create user.
 
     ```bash
     gcloud sql users create montir \
-        --password montir123 \
-        --instance montir-sql
+        --password=montir123 \
+        --instance=montir-sql
     ```
 
 6. Import MySQL database.
@@ -78,7 +78,7 @@ export REGION=asia-southeast2
 
     ```bash
     gcloud sql instances describe montir-sql \
-        --format json | jq \
+        --format=json | jq \
         --raw-output ".ipAddresses[].ipAddress"
     ```
 
@@ -86,19 +86,19 @@ export REGION=asia-southeast2
 
     ```bash
     gcloud projects add-iam-policy-binding $PROJECT_ID \
-        --member "serviceAccount:$PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
-        --role "roles/cloudsql.client"
+        --member="serviceAccount:$PROJECT_NUMBER-compute@developer.gserviceaccount.com" \
+        --role="roles/cloudsql.client"
     ```
 
 9. Create Serverless VPC Access connector.
 
     ```bash
     gcloud compute networks vpc-access connectors create anticede-connector \
-        --region ${REGION} \
-        --range 10.8.0.0/28 \
-        --min-instances 2 \
-        --max-instances 3 \
-        --machine-type f1-micro
+        --region=${REGION} \
+        --range=10.8.0.0/28 \
+        --min-instances=2 \
+        --max-instances=3 \
+        --machine-type=f1-micro
     ```
 
 ## Artifact Registry
@@ -107,8 +107,8 @@ Create Artifact Registry repository.
 
 ```bash
 gcloud artifacts repositories create montir \
-    --location $REGION \
-    --repository-format docker 
+    --location=$REGION \
+    --repository-format=docker 
 ```
 
 ## App Engine Setup
@@ -196,19 +196,11 @@ gcloud artifacts repositories create montir \
 - In GCP
 
     1. Open Cloud Run
-
     2. Click "Create Service"
-
     3. Click "Select" for Cointainer Image URL, and choose the Image.
-
     4. Name the service however you want.
-
     5. For Region, choose asia-southeast2.
-
     6. For Aauthentication, select "Allow unauthenticated invocations".
-
     7. Click "Container(s)", change the Container Port to 3000, go down to "Revision autoscalling" and change the max instances to 4.
-
     8. Click "Networking", select the "Connect to a VPC for outbound traffic" then choose "Use Serverless VPC Access connectors", in the Network option, find the default connector that says "... montir-connector".
-
     9. Finally, click "Deploy"
