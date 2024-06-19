@@ -3,10 +3,37 @@
 ## Bangkit Capstone Project 2024
 Capstone Team ID : C241-PS211
 
+## Cloud Computing Team Member
+
+|            Nama             |  Bangkit-ID  |       Path        |
+| :-------------------------: |  :--------:  | :---------------: |
+|       Delisya Jayadi        | C006D4KX1259 |  Cloud Computing  |
+|      Eureka Diaandisy       | C258D4KY0632 |  Cloud Computing  |
+
 ## Progression Timeline
 |            |    Week 1  |  Week 2&3  |    Week 3  |  Week 3&4  |
 | ---------- | ---------- | ---------- | ---------- | ---------- |
 | Objectives |Setting up GCP Project|Configure database and data storage | Build and deploy backend API | Deploy and integrate model into backend API | Testing and Evaluating API |
+
+## Tools & Technologies
+* Node.js
+* Express.js
+* Cloud SQL
+* Docker
+* Cloud Run
+* App Engine
+
+## Packages & Dependencies
+* @google-cloud/storage
+* axios
+* bcrypt
+* cors
+* dotenv
+* express
+* jsonwebtoken
+* mysql2
+* nanoid
+* nodemon
 
 ## GCP Architecture
 ![GCPArchitecture](https://github.com/EurekaCHWARD/Montir/blob/cc/GCP_Architecture.png)
