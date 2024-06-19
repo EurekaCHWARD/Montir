@@ -13,6 +13,7 @@ const {
     logout,
     loginAdmin,
     getUserData,
+    getAllAudios,
 } = require('./handler');
 
 const routes = express.Router();
@@ -40,5 +41,8 @@ routes.post('/login_admin', loginAdmin);
 
 // Logout route
 routes.post('/logout', logout);
+
+// Route to get all audio files
+routes.get("/audios", getAllAudios);
 
 module.exports = routes;

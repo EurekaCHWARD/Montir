@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const db = require('./database');
 require('dotenv').config();
 const axios = require("axios");
+const { Storage } = require("@google-cloud/storage");
 
 // Maximum token expiration time (3 days)
 const maxExpire = 3 * 24 * 60 * 60;
@@ -412,6 +413,35 @@ exports.loginAdmin = async(req, res) => {
     }
     return res.status(404).json({ message: 'Username tidak ditemukan!' });
 };
+
+exports.getAllAudios = async(req, res) => {
+    const storage = new Storage();
+    const bucketName = 'montir-audio';
+    const bucket = storage.bucket(bucketName);
+
+    try {
+        const [files] = await bucket.getFiles();
+
+        // Fetch metadata for each file
+        const audioFiles = await Promise.all(files.map(async file => {
+            const [metadata] = await file.getMetadata();
+            return {
+                musicName: file.name.replace('.m4a', ''),
+                duration: metadata.metadata.duration, // Assuming 'duration' is stored in metadata
+                urlMusic: file.publicUrl()
+            };
+        }));
+
+        res.status(200).json({
+            message: "Audio files retrieved successfully",
+            data: audioFiles,
+        });
+    } catch (error) {
+        console.error("Error fetching audio files:", error);
+        res.status(500).json({ message: "Internal server error." });
+    }
+};
+
 
 // Function to logout
 exports.logout = (req, res) => {
