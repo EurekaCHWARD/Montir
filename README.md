@@ -8,6 +8,12 @@ Capstone Team ID : C241-PS211
 | Objectives | ---------- | ---------- | ---------- | ---------- |
 |            | Setting up GCP Project|Configure database and data storage | Build and deploy backend API | Deploy and integrate model into backend API | Testing and Evaluating API |
 
+|  Task  |     Week 1     |       Week 2        |            Week 3          |           Week 4          |
+| :----: | :------------: | :-----------------: | :------------------------: |:------------------------: |
+| Task 1 | Design System, Handling local database   | Build API      | Testing and Evaluation API  | Testing and Evaluation API  |
+| Task 2 | - | Make Cloud SQL database | -             | -             |
+| Task 3 |       -         | Deploy API in Cloud Run and connect with Cloud SQL  |     -     | -             |
+
 Documentation API [here](https://documenter.getpostman.com/view/30884670/2sA3Qv9X1A)
 
 Deployed API url https://montir-cvzxsttw2a-et.a.run.app/
