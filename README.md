@@ -8,6 +8,9 @@ Capstone Team ID : C241-PS211
 | ---------- | ---------- | ---------- | ---------- | ---------- |
 | Objectives |Setting up GCP Project|Configure database and data storage | Build and deploy backend API | Deploy and integrate model into backend API | Testing and Evaluating API |
 
+## GCP Architecture
+![GCPArchitecture](https://github.com/EurekaCHWARD/Montir/blob/cc/GCP_Architecture.png)
+
 Documentation API [here](https://documenter.getpostman.com/view/30884670/2sA3Qv9X1A)
 
 Deployed API url https://montir-cvzxsttw2a-et.a.run.app/
