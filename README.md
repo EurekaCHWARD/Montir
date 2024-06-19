@@ -6,7 +6,7 @@ Capstone Team ID : C241-PS211
 ## Progression Timeline
 |            |    Week 1  |  Week 2&3  |    Week 3  |  Week 3&4  |
 | Objectives | ---------- | ---------- | ---------- | ---------- |
-|            | Setting up GCP Project|Configure database and data storage | Build and deploy backend API | Deploy and integrate model into backend API | Testing and Evaluating API |
+|            |            |            |            |            |
 
 |  Task  |     Week 1     |       Week 2        |            Week 3          |           Week 4          |
 | :----: | :------------: | :-----------------: | :------------------------: |:------------------------: |
