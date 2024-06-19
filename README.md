@@ -12,6 +12,8 @@ Capstone Team ID : C241-PS211
 ![GCPArchitecture](https://github.com/EurekaCHWARD/Montir/blob/cc/GCP_Architecture.png)
 
 ## Montir API Documentation 
-[Documentation API](https://documenter.getpostman.com/view/30884670/2sA3Qv9X1A)
+### API Documentation
+[Montir API](https://documenter.getpostman.com/view/30884670/2sA3Qv9X1A)
 
+### API ERD
 ![ERD](https://github.com/EurekaCHWARD/Montir/blob/cc/montir-db-erd.png)
