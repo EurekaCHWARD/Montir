@@ -11,10 +11,7 @@ Capstone Team ID : C241-PS211
 ## GCP Architecture
 ![GCPArchitecture](https://github.com/EurekaCHWARD/Montir/blob/cc/GCP_Architecture.png)
 
-Documentation API [here](https://documenter.getpostman.com/view/30884670/2sA3Qv9X1A)
-
-Deployed API url https://montir-cvzxsttw2a-et.a.run.app/
-
-Deployed Model url https://montir-app-69420.as.r.appspot.com/
+## Montir API Documentation 
+[Documentation API](https://documenter.getpostman.com/view/30884670/2sA3Qv9X1A)
 
 ![ERD](https://github.com/EurekaCHWARD/Montir/blob/cc/montir-db-erd.png)
