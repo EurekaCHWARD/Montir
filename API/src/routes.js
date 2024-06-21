@@ -2,17 +2,18 @@ const express = require('express');
 const { requireAuthUser, requireAuthAdmin } = require('./middleware');
 const {
     getAllUser,
-    signupPost,
-    addDailyData,
+    getUserById,
+    getUserData,
     getDailyData,
     signupAdminPost,
-    getUserById,
-    editUserById,
-    deleteUserById,
+    signupPost,
+    loginAdmin,
     login,
     logout,
-    loginAdmin,
-    getUserData,
+    addDailyData,
+    editUserById,
+    editUserPass,
+    deleteUserById,
     getAllAudios,
 } = require('./handler');
 
@@ -23,8 +24,9 @@ routes.get('/users', requireAuthAdmin, getAllUser);
 routes.post('/users', signupPost);
 routes.get('/users/:id', requireAuthUser, getUserById);
 routes.put('/users/:id', requireAuthUser, editUserById);
-routes.delete('/users/:id', requireAuthAdmin, deleteUserById);
+routes.put('/users/pass/:id', requireAuthUser, editUserPass);
 routes.get('/user/data', requireAuthUser, getUserData);
+routes.delete('/users/:id', requireAuthAdmin, deleteUserById);
 
 // Route to add daily data
 routes.post('/users/daily', requireAuthUser, addDailyData);
